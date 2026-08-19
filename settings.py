@@ -1,3 +1,6 @@
+import pygame as pg
+pg.init()
+
 kernel_reactivity_koef=0.1
 
 base_temperature = 284.0
@@ -20,3 +23,7 @@ start_turbine_power = 0.0
 
 max_temperature = 350.0
 max_power=4000.0
+
+WIDTH=1280
+HEIGHT=720
+font = pg.font.SysFont("Arial", 30)

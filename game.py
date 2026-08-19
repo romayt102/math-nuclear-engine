@@ -1,8 +1,10 @@
 import time
 import queue
 import threading
+import pygame as pg
 from reactor import *
 from engine import *
+from slider import *
 from settings import *
 
 class Game():
@@ -12,6 +14,9 @@ class Game():
         self.tick_time = tick_time
         self.input_queue = queue.Queue()
         self.game_reactor = Reactor(game_controller=self)
+
+        self.slider = Slider(50, 200, 50, 300,80,50, 0.0, 1.0, 0.5, "Положение СУЗ")
+        self.turbine_slider = Slider(250, 200, 50, 300, 80, 50, 0.0, 1.0, 0.5, "Мощность Турбин")
 
     def set_game(self, game):
         self.game = game
@@ -60,8 +65,34 @@ class Game():
 
         while self.game:
             #self.engine.cls()
-            self.draw_info(self.game_reactor)
-            self.game_reactor.explosion()
+            #self.draw_info(self.game_reactor)
+            #self.game_reactor.explosion()
+
+
+            self.engine.fill_game_surf((0,0,0))
+            self.engine.render_text('РБМК-1000', 50, 25)
+
+
+            image1 = self.engine.load_image('images/','1.jpg')
+            self.engine.render_obj(image1, 595, 0)
+
+            self.slider.draw(self.engine.get_game_surf())
+            self.turbine_slider.draw(self.engine.get_game_surf())
+
+            self.engine.render_screen()
+            pg.display.flip()
+
+            for event in pg.event.get():
+                self.slider.handle_event(event)
+                self.turbine_slider.handle_event(event)
+                if event.type == pg.QUIT:
+                    pg.quit()
+                if event.type == pg.VIDEORESIZE:
+                    self.engine.change_size(event.size)
+
+
+
+
 
             if not self.input_queue.empty():
                 data = self.input_queue.get()
@@ -79,4 +110,4 @@ class Game():
                     self.game_reactor.turbine_power = float(data)
                     self.game_reactor.step = 0
 
-            time.sleep(tick_time)
+            #time.sleep(tick_time)
