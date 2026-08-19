@@ -26,4 +26,5 @@ max_power=4000.0
 
 WIDTH=1280
 HEIGHT=720
-font = pg.font.SysFont("Arial", 30)
+name_font = pg.font.SysFont("Arial", 30)
+parametrs_font = pg.font.SysFont("Arial", 25)

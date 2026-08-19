@@ -1,5 +1,4 @@
 import os
-import pygame as pg
 from settings import *
 
 
@@ -9,7 +8,6 @@ class Engine:
         self.screen = pg.display.set_mode((WIDTH, HEIGHT), pg.RESIZABLE)
         self.game_surface = pg.Surface((WIDTH, HEIGHT))
         self.current_size = self.screen.get_size()
-        self.font = font
 
     def load_image(self, path,name_image):
         loading_image = pg.image.load(os.path.join(path,name_image)).convert_alpha()
@@ -21,9 +19,9 @@ class Engine:
     def render_screen(self):
         self.screen.blit(pg.transform.scale(self.game_surface, self.current_size),(0,0))
 
-    def render_text(self, text,x_pos,y_pos):
-        font = self.font.render(text,1, (80,80,80))
-        self.game_surface.blit(font,(x_pos,y_pos))
+    def render_text(self, font,text,x_pos,y_pos):
+        text = font.render(text,1, (80,80,80))
+        self.game_surface.blit(text,(x_pos,y_pos))
 
     def fill_game_surf(self, color):
         self.game_surface.fill(color)

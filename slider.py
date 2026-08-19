@@ -24,8 +24,12 @@ class Slider:
         handle_y = self.y + int((1-procent) * self.height) - (self.height_handle // 2)
         pg.draw.rect(screen, (100, 100, 100), (handle_x, handle_y, self.width_handle, self.height_handle), border_radius=8)
 
-        font = self.font.render(self.label, 1, (80, 80, 80))
-        screen.blit(font, (self.x-(self.font.size(self.label)[0]//2)+self.width//2, self.y-self.font.size(self.label)[1]-self.height_handle//2))
+        label = self.font.render(self.label, 1, (80, 80, 80))
+        screen.blit(label, (self.x-(self.font.size(self.label)[0]//2)+self.width//2, self.y-self.font.size(self.label)[1]-self.height_handle//2))
+
+        value_text = self.font.render(f'{self.value:.2f}', 1, (80, 80, 80))
+        screen.blit(value_text, (self.x - (self.font.size(f'{self.value:.2f}')[0] // 2) + self.width//2,
+                           self.y + self.font.size(self.label)[1] + self.height))
 
     def handle_event(self,event):
         mouse_pos = pg.mouse.get_pos()
