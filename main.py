@@ -25,12 +25,12 @@ def initialization():
 
 def math_physics():
     global kernel_react; global temp_react; global all_react; global new_power; global new_heat; global new_cooling; global new_temp
-    kernel_react = phys.kernel_reactivity(height_kernel, kernel_reactivity_koef)
-    temp_react = phys.temp_reactivity(temperature, base_temperature, fuel_temp_koef,void_steam_koef)
+    kernel_react = phys.kernel_reactivity(height_kernel)
+    temp_react = phys.temp_reactivity(temperature, base_temperature)
     all_react = phys.all_reactivity(kernel_react, temp_react)
     new_power = phys.new_power(all_react, power, tick)
-    new_heat = phys.new_heat(new_power, heat_koef)
-    new_cooling = phys.new_cooling(temperature, environment_temp, turbine_power, turbine_koef)
+    new_heat = phys.new_heat(new_power)
+    new_cooling = phys.new_cooling(temperature, environment_temp)
     new_temp = phys.new_temperature(temperature, new_heat, new_cooling, tick)
 
 def update_values():
