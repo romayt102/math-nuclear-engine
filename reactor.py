@@ -1,12 +1,9 @@
 from physics import Physics
 from settings import *
-from engine import *
 
 class Reactor():
-    def __init__(self, game_controller):
+    def __init__(self):
         self.phys = Physics()
-        self.engine = Engine()
-        self.game_controller = game_controller
 
         self.kernel_react = 0
         self.temp_react = 0
@@ -23,7 +20,6 @@ class Reactor():
 
         self.ticks = tick
         self.tick_time = tick_time
-        self.step = 0
 
     def math_physics(self):
         self.kernel_react = self.phys.kernel_reactivity(self.height_kernel)
@@ -37,21 +33,6 @@ class Reactor():
 
     def explosion(self):
         if self.power > max_power:
-            self.engine.cls()
-            self.step = -1
-            print('Произошла авария на ЧАЭС. Реактор РБМК-1000 разрушен. Активной зоны больше нет.')
-            print(f'Мощность реактора: {self.power:.2f} ||| Максимально допустимая мощность реактора: {self.max_power:.2f}')
-            print(
-                f'Температура реактора: {self.temperature:.2f} ||| Максимально допустимая температура реактора: {self.max_temperature:.2f}')
-            print(f'Колличество тиков: {self.ticks}')
-            self.game_controller.set_game(False)
-        elif self.temperature > max_temperature:
-            self.engine.cls()
-            self.step = -1
-            print(
-                'Произошла авария на ЧАЭС. Реактор РБМК-1000 разрушен. Давление пара разорвало технологические каналы и сорвало крышку реактора!')
-            print(f'Мощность реактора: {self.power:.2f} ||| Максимально допустимая мощность реактора: {self.max_power:.2f}')
-            print(
-                f'Температура реактора: {self.temperature:.2f} ||| Максимально допустимая температура реактора: {self.max_temperature:.2f}')
-            print(f'Колличество тиков: {self.ticks}')
-            self.game_controller.set_game(False)
+            return 'MAX_POWER_EXP'
+        if self.temperature > max_temperature:
+            return 'MAX_TEMP_EXP'

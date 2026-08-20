@@ -19,8 +19,11 @@ class Engine:
     def render_screen(self):
         self.screen.blit(pg.transform.scale(self.game_surface, self.current_size),(0,0))
 
-    def render_text(self, font,text,x_pos,y_pos):
-        text = font.render(text,1, (80,80,80))
+    def render_text(self, font,text,x_pos,y_pos, color=None):
+        if color is not None:
+            text = font.render(text, 1, color)
+        else:
+            text = font.render(text,1, (80,80,80))
         self.game_surface.blit(text,(x_pos,y_pos))
 
     def fill_game_surf(self, color):
