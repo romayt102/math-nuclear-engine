@@ -14,10 +14,11 @@ min_power = 0.1
 heat_koef = 0.00825
 
 environment_temp =20.0
-turbine_koef = 0.2
+turbine_koef = 0.02
+base_cooling = 0.001
 
-start_power = 0.0
-start_temperature = 0.0
+start_power = 32.0
+start_temperature = 284.0
 start_height_kernel = 0.5
 start_turbine_power = 0.0
 

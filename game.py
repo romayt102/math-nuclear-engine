@@ -35,9 +35,9 @@ class Game():
             self.turbine_slider.draw(self.engine.get_game_surf())
 
             self.engine.render_text(self.parametrs_font,f"Шаг симуляции (тик): {cur_reactor.ticks}", 400, 500)
-            self.engine.render_text(self.parametrs_font,f"Ядерная реактивность: {cur_reactor.kernel_react:.2f} k",400,550)
-            self.engine.render_text(self.parametrs_font,f"Темп. реактивность: {cur_reactor.temp_react:.2f} k",400,600)
-            self.engine.render_text(self.parametrs_font,f"Общая реактивность: {cur_reactor.all_react:.2f} k",400,650)
+            self.engine.render_text(self.parametrs_font,f"Ядерная реактивность: {cur_reactor.kernel_react:.4f} k",400,550)
+            self.engine.render_text(self.parametrs_font,f"Темп. реактивность: {cur_reactor.temp_react:.6f} k",400,600)
+            self.engine.render_text(self.parametrs_font,f"Общая реактивность: {cur_reactor.all_react:.6f} k",400,650)
             self.engine.render_text(self.parametrs_font,f"Выделение тепла: {cur_reactor.new_heat:.2f} МВт",800,500)
             self.engine.render_text(self.parametrs_font, f"Охлаждение: {cur_reactor.new_cooling:.2f} МВт", 800, 550)
             self.engine.render_text(self.parametrs_font, f"Мощность: {cur_reactor.power:.2f} МВт", 800, 600)

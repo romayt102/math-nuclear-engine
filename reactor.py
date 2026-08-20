@@ -22,13 +22,13 @@ class Reactor():
         self.tick_time = tick_time
 
     def math_physics(self):
+        self.power, self.temperature = self.phys.step_rk4(self.power,self.temperature,self.height_kernel,self.turbine_power,self.tick_time)
         self.kernel_react = self.phys.kernel_reactivity(self.height_kernel)
         self.temp_react = self.phys.temp_reactivity(self.temperature)
         self.all_react = self.phys.all_reactivity(self.kernel_react, self.temp_react)
-        self.power = self.phys.new_power(self.all_react, self.power)
         self.new_heat = self.phys.new_heat(self.power)
         self.new_cooling = self.phys.new_cooling(self.temperature, self.turbine_power)
-        self.temperature = self.phys.new_temperature(self.temperature, self.new_heat, self.new_cooling)
+
         self.ticks += 1
 
     def explosion(self):
